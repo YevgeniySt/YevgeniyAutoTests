@@ -17,7 +17,7 @@ import java.util.Date;
  */
 public class YS_CreatePlayerTests {
     @Test
-    public  static void CreatePlayer() throws InterruptedException {
+    public void CreatePlayer() throws InterruptedException {
 
        final WebDriver driver = new FirefoxDriver();
 
@@ -54,7 +54,7 @@ public class YS_CreatePlayerTests {
         driver.findElement(By.cssSelector("input#ff14642ac1c__us_phone")).sendKeys(Phone);
         driver.findElement(By.xpath("//input[@value='Save']")).click();
 
-        Thread.sleep(10000);
+        Thread.sleep(5000);
         driver.findElement(By.xpath("//input[@id='723a925886__login']")).sendKeys(UserName);
         driver.findElement(By.xpath("//input[@value='Search']")).click();
         driver.findElement(By.cssSelector("img[alt='Edit']")).click();
