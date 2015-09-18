@@ -64,5 +64,23 @@ public class YSInsertPage {
     }
 
 
+    public boolean getPaymentActualValue() {
+        return driver.findElement(By.cssSelector("input#ff14642ac1c__payment_chat_enabled")).isSelected();
+    }
 
+    public String getRealMoneyActualValue() {
+        return driver.findElement(By.xpath("//*[@id='c5618e27f0ab6d90d503b6ef5faca34c']/table/tbody/tr[2]/td/table/tbody/tr[2]/td[2]")).getText();
+    }
+
+    public String getFunMoneyActualValue() {
+        return driver.findElement(By.xpath("//*[@id='c5618e27f0ab6d90d503b6ef5faca34c']/table/tbody/tr[2]/td/table/tbody/tr[3]/td[2]")).getText();
+    }
+
+    public String getBonusDollarsActualValue() {
+        return driver.findElement(By.xpath("//*[@id='c5618e27f0ab6d90d503b6ef5faca34c']/table/tbody/tr[2]/td/table/tbody/tr[4]/td[2]")).getText();
+    }
+
+    public String getLoyaltyPointsActualValue() {
+        return driver.findElement(By.xpath("//*[@id='c5618e27f0ab6d90d503b6ef5faca34c']/table/tbody/tr[2]/td/table/tbody/tr[5]/td[2]")).getText();
+    }
 }
