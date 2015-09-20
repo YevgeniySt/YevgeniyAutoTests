@@ -6,6 +6,7 @@ import Pages.InsertPage;
 import Pages.TransactionsInsertPage;
 import org.testng.annotations.Test;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.LinkedList;
@@ -27,7 +28,7 @@ public class FillUpBalanceTests extends Base{
         String expectedAccount = "Real Money";
         String expectedRealMoney = "598";
         String expectedNotes = "HElloWorld!";
-        NumberFormat ukFormat = NumberFormat.getNumberInstance(Locale.UK);
+
 
         //login and open user for editing
         loginAs("admin","123");
@@ -39,10 +40,7 @@ public class FillUpBalanceTests extends Base{
         //click on add Transaction
         InsertPage insertPage = new InsertPage(driver);
         //read current Real Money balance into int
-
-        String currentRealMoney = insertPage.getRealMoneyActualValue();
-        String currentRealMoneySubstring = currentRealMoney.substring(1,currentRealMoney.length()-1);
-        int currentRealMoneyBalance = ukFormat.parse(currentRealMoneySubstring).intValue();
+        double currentRealMoneyBalance = convertStringWithDollarBeforeToInt(insertPage.getRealMoneyActualValue());
 
         //click add transaction button
         TransactionsInsertPage transactionsInsertPage= insertPage.clickOnAddTransactionButton();
@@ -68,15 +66,12 @@ public class FillUpBalanceTests extends Base{
 
         //driver.close();
         driver.switchTo().window(mainWindow);
-
-        String actualRealMoney = insertPage.getRealMoneyActualValue();
-        String actualRealMoneySubstring = actualRealMoney.substring(1,actualRealMoney.length()-1);
-        int actualRealMoneyBalance = ukFormat.parse(actualRealMoneySubstring).intValue();
+        double actualRealMoneyBalance = convertStringWithDollarBeforeToInt(insertPage.getRealMoneyActualValue());
 
 
         AssertCheck assertCheck = new AssertCheck(driver);
 
-        assertCheck.assertEquals(actualRealMoneyBalance, currentRealMoneyBalance+Integer.parseInt(expectedRealMoney));
+        assertCheck.assertEquals(actualRealMoneyBalance, currentRealMoneyBalance+Double.parseDouble(expectedRealMoney));
         assertCheck.printErrors();
 
     }
@@ -91,7 +86,7 @@ public class FillUpBalanceTests extends Base{
         String expectedAccount = "Fun Money";
         String expectedFunMoney = "597";
         String expectedNotes = "HElloWorld!";
-        NumberFormat ukFormat = NumberFormat.getNumberInstance(Locale.UK);
+
 
         //login and open user for editing
         loginAs("admin","123");
@@ -105,7 +100,8 @@ public class FillUpBalanceTests extends Base{
         //click on add Transaction
         InsertPage insertPage = new InsertPage(driver);
         //read current Fun Money balance into int
-        int currentFunMoneyBalance = ukFormat.parse(insertPage.getFunMoneyActualValue()).intValue();
+
+        double currentFunMoneyBalance = convertStringToInt(insertPage.getFunMoneyActualValue());
 
         //click add transaction button
         TransactionsInsertPage transactionsInsertPage= insertPage.clickOnAddTransactionButton();
@@ -132,13 +128,12 @@ public class FillUpBalanceTests extends Base{
         //driver.close();
         driver.switchTo().window(mainWindow);
 
-        String actualFunMoney = insertPage.getFunMoneyActualValue();
-
+        double actualFunMoney = convertStringToInt(insertPage.getFunMoneyActualValue());
 
         AssertCheck assertCheck = new AssertCheck(driver);
-
-        assertCheck.assertEquals(ukFormat.parse(actualFunMoney).intValue(), currentFunMoneyBalance+Integer.parseInt(expectedFunMoney));
+        assertCheck.assertEquals(actualFunMoney, currentFunMoneyBalance + Double.parseDouble(expectedFunMoney));
         assertCheck.printErrors();
+
 
     }
 
@@ -152,7 +147,7 @@ public class FillUpBalanceTests extends Base{
         String expectedAccount = "Bonus Dollars";
         String expectedBonusDollars = "597";
         String expectedNotes = "HElloWorld!";
-        NumberFormat ukFormat = NumberFormat.getNumberInstance(Locale.UK);
+
 
         //login and open user for editing
         loginAs("admin","123");
@@ -166,9 +161,7 @@ public class FillUpBalanceTests extends Base{
         //click on add Transaction
         InsertPage insertPage = new InsertPage(driver);
         //read current Fun Money balance into int
-        String currentBonusDollars = insertPage.getBonusDollarsActualValue();
-        String currentBonusDollarsSubstring = currentBonusDollars.substring(1, currentBonusDollars.length()-1);
-        int currentBonusDollarsBalance = ukFormat.parse(currentBonusDollarsSubstring).intValue();
+        double currentBonusDollarsBalance = convertStringWithDollarBeforeToInt(insertPage.getBonusDollarsActualValue());
 
 
         //click add transaction button
@@ -195,17 +188,12 @@ public class FillUpBalanceTests extends Base{
 
         //driver.close();
         driver.switchTo().window(mainWindow);
+        //read actual value
+        double actualBonusDollarsBalance = convertStringWithDollarBeforeToInt(insertPage.getBonusDollarsActualValue());
 
-        String actualBonusDollars = insertPage.getBonusDollarsActualValue();
-        String actualBonusDollarsSubstring = actualBonusDollars.substring(1, actualBonusDollars.length() - 1);
-        int actualBonusDollarsBalance = ukFormat.parse(actualBonusDollarsSubstring).intValue();
-
-
-
-
+        //checks
         AssertCheck assertCheck = new AssertCheck(driver);
-
-        assertCheck.assertEquals(actualBonusDollarsBalance, currentBonusDollarsBalance+Integer.parseInt(expectedBonusDollars));
+        assertCheck.assertEquals(actualBonusDollarsBalance, currentBonusDollarsBalance+Double.parseDouble(expectedBonusDollars));
         assertCheck.printErrors();
 
     }

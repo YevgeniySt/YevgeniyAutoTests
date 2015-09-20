@@ -57,7 +57,7 @@ public class AssertCheck {
     }
 
 
-    public void assertEquals(int actualValue, int expectedValue) {
+    public void assertEquals(double actualValue, double expectedValue) {
 
         try {
             Assert.assertEquals(actualValue, expectedValue);

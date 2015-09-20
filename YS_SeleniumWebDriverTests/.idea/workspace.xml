@@ -66,7 +66,7 @@
         <entry file="file://$PROJECT_DIR$/src/test/java/BusinessLogic/AssertCheck.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="59" column="63" selection-start-line="59" selection-start-column="63" selection-end-line="59" selection-end-column="63" />
+              <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#257#265#0" expanded="true" />
@@ -112,15 +112,25 @@
       <file leaf-file-name="FillUpBalanceTests.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/Tests/FillUpBalanceTests.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.13486005">
-              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.33333334">
+              <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#659#667#0" expanded="true" />
-                <element signature="method#fillUpFunMoneyTest#0;class#FillUpBalanceTests#0" expanded="false" />
-                <element signature="e#3109#3117#0" expanded="true" />
-                <element signature="method#fillUpBonusDollarsTest#0;class#FillUpBalanceTests#0" expanded="false" />
-                <element signature="e#5220#5228#0" expanded="true" />
+                <element signature="e#691#699#0" expanded="true" />
+                <element signature="e#2770#2778#0" expanded="true" />
+                <element signature="e#4800#4808#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Base.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/BusinessLogic/Base.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="44" column="71" selection-start-line="44" selection-start-column="71" selection-end-line="44" selection-end-column="71" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -161,12 +171,12 @@
         <option value="$PROJECT_DIR$/src/test/java/Pages/PlayersListPage.java" />
         <option value="$PROJECT_DIR$/src/test/java/Pages/LoginPage.java" />
         <option value="$PROJECT_DIR$/src/test/java/BusinessLogic/BusinessLayer.java" />
-        <option value="$PROJECT_DIR$/src/test/java/BusinessLogic/Base.java" />
         <option value="$PROJECT_DIR$/src/test/java/Tests/LoginTests.java" />
         <option value="$PROJECT_DIR$/src/test/java/Tests/CreatePlayerTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/Pages/InsertPage.java" />
         <option value="$PROJECT_DIR$/src/test/java/Pages/TransactionsInsertPage.java" />
         <option value="$PROJECT_DIR$/src/test/java/BusinessLogic/AssertCheck.java" />
+        <option value="$PROJECT_DIR$/src/test/java/BusinessLogic/Base.java" />
         <option value="$PROJECT_DIR$/src/test/java/Tests/FillUpBalanceTests.java" />
       </list>
     </option>
@@ -387,39 +397,6 @@
       <listeners />
       <method />
     </configuration>
-    <configuration default="false" name="CreatePlayerTest" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="Tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="YS_SeleniumWebDriverTests" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" value="Tests" />
-      <option name="MAIN_CLASS_NAME" value="Tests.CreatePlayerTest" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
-      <envs />
-      <properties />
-      <listeners />
-      <method />
-    </configuration>
     <configuration default="false" name="FillUpBalanceTests.fillUpBalanceTest" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -500,6 +477,39 @@
       <option name="PACKAGE_NAME" value="Tests" />
       <option name="MAIN_CLASS_NAME" value="Tests.FillUpBalanceTests" />
       <option name="METHOD_NAME" value="fillUpBalanceTest" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="false" name="FillUpBalanceTests.fillUpFunMoneyTest" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="YS_SeleniumWebDriverTests" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" value="Tests" />
+      <option name="MAIN_CLASS_NAME" value="Tests.FillUpBalanceTests" />
+      <option name="METHOD_NAME" value="fillUpFunMoneyTest" />
       <option name="GROUP_NAME" />
       <option name="TEST_OBJECT" value="METHOD" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -668,18 +678,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="TestNG.LoginTests" />
-      <item index="1" class="java.lang.String" itemvalue="TestNG.CreatePlayerTest" />
-      <item index="2" class="java.lang.String" itemvalue="TestNG.FillUpBalanceTests.fillUpBalanceTest" />
-      <item index="3" class="java.lang.String" itemvalue="TestNG.FillUpBalanceTests" />
-      <item index="4" class="java.lang.String" itemvalue="TestNG.FillUpBalanceTests.fillUpBalanceTest (1)" />
+      <item index="1" class="java.lang.String" itemvalue="TestNG.FillUpBalanceTests.fillUpBalanceTest" />
+      <item index="2" class="java.lang.String" itemvalue="TestNG.FillUpBalanceTests" />
+      <item index="3" class="java.lang.String" itemvalue="TestNG.FillUpBalanceTests.fillUpBalanceTest (1)" />
+      <item index="4" class="java.lang.String" itemvalue="TestNG.FillUpBalanceTests.fillUpFunMoneyTest" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="TestNG.FillUpBalanceTests" />
-        <item index="1" class="java.lang.String" itemvalue="TestNG.FillUpBalanceTests.fillUpBalanceTest (1)" />
-        <item index="2" class="java.lang.String" itemvalue="TestNG.FillUpBalanceTests.fillUpBalanceTest" />
-        <item index="3" class="java.lang.String" itemvalue="TestNG.LoginTests" />
-        <item index="4" class="java.lang.String" itemvalue="TestNG.CreatePlayerTest" />
+        <item index="1" class="java.lang.String" itemvalue="TestNG.FillUpBalanceTests.fillUpFunMoneyTest" />
+        <item index="2" class="java.lang.String" itemvalue="TestNG.FillUpBalanceTests.fillUpBalanceTest (1)" />
+        <item index="3" class="java.lang.String" itemvalue="TestNG.FillUpBalanceTests.fillUpBalanceTest" />
+        <item index="4" class="java.lang.String" itemvalue="TestNG.LoginTests" />
       </list>
     </recent_temporary>
   </component>
@@ -831,11 +841,9 @@
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#659#667#0" expanded="true" />
-            <element signature="method#fillUpFunMoneyTest#0;class#FillUpBalanceTests#0" expanded="false" />
-            <element signature="e#3109#3117#0" expanded="true" />
-            <element signature="method#fillUpBonusDollarsTest#0;class#FillUpBalanceTests#0" expanded="false" />
-            <element signature="e#5220#5228#0" expanded="true" />
+            <element signature="e#691#699#0" expanded="true" />
+            <element signature="e#2770#2778#0" expanded="true" />
+            <element signature="e#4800#4808#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1002,33 +1010,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/BusinessLogic/Base.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/Tests/CreatePlayerTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="77" column="67" selection-start-line="77" selection-start-column="8" selection-end-line="77" selection-end-column="67" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/BusinessLogic/AssertCheck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="59" column="63" selection-start-line="59" selection-start-column="63" selection-end-line="59" selection-end-column="63" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#257#265#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1064,17 +1051,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/Tests/FillUpBalanceTests.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/BusinessLogic/AssertCheck.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13486005">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#659#667#0" expanded="true" />
-            <element signature="method#fillUpFunMoneyTest#0;class#FillUpBalanceTests#0" expanded="false" />
-            <element signature="e#3109#3117#0" expanded="true" />
-            <element signature="method#fillUpBonusDollarsTest#0;class#FillUpBalanceTests#0" expanded="false" />
-            <element signature="e#5220#5228#0" expanded="true" />
+            <element signature="e#257#265#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/BusinessLogic/Base.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="44" column="71" selection-start-line="44" selection-start-column="71" selection-end-line="44" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/Tests/FillUpBalanceTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#691#699#0" expanded="true" />
+            <element signature="e#2770#2778#0" expanded="true" />
+            <element signature="e#4800#4808#0" expanded="true" />
           </folding>
         </state>
       </provider>
