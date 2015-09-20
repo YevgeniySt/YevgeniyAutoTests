@@ -57,5 +57,14 @@ public class AssertCheck {
     }
 
 
+    public void assertEquals(int actualValue, int expectedValue) {
 
+        try {
+            Assert.assertEquals(actualValue, expectedValue);
+        } catch (AssertionError e) {
+
+            listOfFails.add(e.getMessage());
+
+        }
+    }
 }

@@ -1,34 +1,19 @@
 package Tests;
 
 import BusinessLogic.AssertCheck;
+import BusinessLogic.Base;
 import Pages.InsertPage;
-import Pages.LoginPage;
 import Pages.PlayersListPage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Евгений on 17.09.2015.
  */
-public class CreatePlayerTest {
-    private WebDriver driver;
-    LoginPage loginPage;
-
-
-    @BeforeMethod
-    public void openSite() {
-        driver = new FirefoxDriver();
-        driver.get("http://193.138.245.222:81/auth/login");
-        loginPage = new LoginPage(driver);
-    }
+public class CreatePlayerTest extends Base{
 
     @Test
     public void createPlayerTest() throws InterruptedException {
@@ -48,9 +33,7 @@ public class CreatePlayerTest {
         String expectedLoyaltyPoints = "0.00 LP";
 
         //Fill data and login
-        loginPage.setUserNameField("admin");
-        loginPage.setPasswordField("123");
-        PlayersListPage playersListPage = loginPage.clickOnLogin();
+        loginAs("admin", "123");
 
         //create instance of Insert Page and click Insert
         InsertPage insertPage = playersListPage.clickInsert();
@@ -99,11 +82,4 @@ public class CreatePlayerTest {
         assertCheck.printErrors();
 
     }
-
-    @AfterMethod
-    public void closeSite() {
-        driver.close();
-    }
-
-
 }

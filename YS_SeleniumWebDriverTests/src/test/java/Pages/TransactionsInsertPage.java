@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 /**
  * Created by Евгений on 19.09.2015.
@@ -30,5 +31,21 @@ public class TransactionsInsertPage {
         PageFactory.initElements(driver, this);
         this.driver = driver;
 
+    }
+
+    public void setAccountCombobox(String account){
+        new Select(accountCombobox).selectByVisibleText(account);
+    }
+
+    public void setAmount(String amount) {
+        amountInput.sendKeys(amount);
+    }
+
+    public void setNotes(String notes) {
+        notesTextArea.sendKeys(notes);
+    }
+
+    public void clickSave() {
+        saveButton.click();
     }
 }

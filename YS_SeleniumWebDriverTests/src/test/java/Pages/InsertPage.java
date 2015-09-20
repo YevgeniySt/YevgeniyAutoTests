@@ -121,7 +121,8 @@ public class InsertPage {
         return loyaltyPointsInput.getText();
     }
 
-    public void clickOnAddTransactionButton(){
+    public TransactionsInsertPage clickOnAddTransactionButton(){
         addTransactionButton.click();
+        return new TransactionsInsertPage(driver);
     }
 }
