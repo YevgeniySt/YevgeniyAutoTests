@@ -5,13 +5,9 @@ import BusinessLogic.Base;
 import Pages.InsertPage;
 import Pages.TransactionsInsertPage;
 import org.testng.annotations.Test;
-
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by Евгений on 19.09.2015.
@@ -19,7 +15,7 @@ import java.util.Locale;
 public class FillUpBalanceTests extends Base{
 
     @Test
-    public void fillUpRealMoneyTest() throws ParseException{
+    public void fillUpRealMoneyTest() throws ParseException, InterruptedException {
 
         //create values
         String expectedUserName = "UN914222528";
@@ -31,7 +27,7 @@ public class FillUpBalanceTests extends Base{
 
 
         //login and open user for editing
-        loginAs("admin","123");
+        loginAs("admin", "123");
 
         playersListPage.setUserNameField(expectedUserName);
         playersListPage.clickSearchButton();
@@ -40,7 +36,7 @@ public class FillUpBalanceTests extends Base{
         //click on add Transaction
         InsertPage insertPage = new InsertPage(driver);
         //read current Real Money balance into int
-        double currentRealMoneyBalance = convertStringWithDollarBeforeToInt(insertPage.getRealMoneyActualValue());
+        double currentRealMoneyBalance = convertStringTodouble(insertPage.getRealMoneyActualValue());
 
         //click add transaction button
         TransactionsInsertPage transactionsInsertPage= insertPage.clickOnAddTransactionButton();
@@ -64,9 +60,11 @@ public class FillUpBalanceTests extends Base{
         transactionsInsertPage.setNotes(expectedNotes);
         transactionsInsertPage.clickSave();
 
-        //driver.close();
+        Thread.sleep(2000);
+        //waitForAjax();
+
         driver.switchTo().window(mainWindow);
-        double actualRealMoneyBalance = convertStringWithDollarBeforeToInt(insertPage.getRealMoneyActualValue());
+        double actualRealMoneyBalance = convertStringTodouble(insertPage.getRealMoneyActualValue());
 
 
         AssertCheck assertCheck = new AssertCheck(driver);
@@ -77,7 +75,7 @@ public class FillUpBalanceTests extends Base{
     }
 
     @Test
-    public void fillUpFunMoneyTest() throws ParseException{
+    public void fillUpFunMoneyTest() throws ParseException, InterruptedException {
 
         //create values
         String expectedUserName = "UN914222528";
@@ -89,7 +87,7 @@ public class FillUpBalanceTests extends Base{
 
 
         //login and open user for editing
-        loginAs("admin","123");
+        loginAs("admin", "123");
 
         playersListPage.setUserNameField(expectedUserName);
         playersListPage.clickSearchButton();
@@ -101,7 +99,7 @@ public class FillUpBalanceTests extends Base{
         InsertPage insertPage = new InsertPage(driver);
         //read current Fun Money balance into int
 
-        double currentFunMoneyBalance = convertStringToInt(insertPage.getFunMoneyActualValue());
+        double currentFunMoneyBalance = convertStringTodouble(insertPage.getFunMoneyActualValue());
 
         //click add transaction button
         TransactionsInsertPage transactionsInsertPage= insertPage.clickOnAddTransactionButton();
@@ -124,11 +122,12 @@ public class FillUpBalanceTests extends Base{
         transactionsInsertPage.setAmount(expectedFunMoney);
         transactionsInsertPage.setNotes(expectedNotes);
         transactionsInsertPage.clickSave();
+        Thread.sleep(2000);
+        //waitForAjax();
 
-        //driver.close();
         driver.switchTo().window(mainWindow);
 
-        double actualFunMoney = convertStringToInt(insertPage.getFunMoneyActualValue());
+        double actualFunMoney = convertStringTodouble(insertPage.getFunMoneyActualValue());
 
         AssertCheck assertCheck = new AssertCheck(driver);
         assertCheck.assertEquals(actualFunMoney, currentFunMoneyBalance + Double.parseDouble(expectedFunMoney));
@@ -138,7 +137,7 @@ public class FillUpBalanceTests extends Base{
     }
 
     @Test
-    public void fillUpBonusDollarsTest() throws ParseException{
+    public void fillUpBonusDollarsTest() throws ParseException, InterruptedException {
 
         //create values
         String expectedUserName = "UN914222528";
@@ -150,7 +149,7 @@ public class FillUpBalanceTests extends Base{
 
 
         //login and open user for editing
-        loginAs("admin","123");
+        loginAs("admin", "123");
 
         playersListPage.setUserNameField(expectedUserName);
         playersListPage.clickSearchButton();
@@ -161,7 +160,7 @@ public class FillUpBalanceTests extends Base{
         //click on add Transaction
         InsertPage insertPage = new InsertPage(driver);
         //read current Fun Money balance into int
-        double currentBonusDollarsBalance = convertStringWithDollarBeforeToInt(insertPage.getBonusDollarsActualValue());
+        double currentBonusDollarsBalance = convertStringTodouble(insertPage.getBonusDollarsActualValue());
 
 
         //click add transaction button
@@ -185,11 +184,12 @@ public class FillUpBalanceTests extends Base{
         transactionsInsertPage.setAmount(expectedBonusDollars);
         transactionsInsertPage.setNotes(expectedNotes);
         transactionsInsertPage.clickSave();
+        Thread.sleep(2000);
+         //waitForAjax();
 
-        //driver.close();
         driver.switchTo().window(mainWindow);
         //read actual value
-        double actualBonusDollarsBalance = convertStringWithDollarBeforeToInt(insertPage.getBonusDollarsActualValue());
+        double actualBonusDollarsBalance = convertStringTodouble(insertPage.getBonusDollarsActualValue());
 
         //checks
         AssertCheck assertCheck = new AssertCheck(driver);

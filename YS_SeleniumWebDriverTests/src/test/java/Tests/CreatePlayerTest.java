@@ -3,7 +3,6 @@ package Tests;
 import BusinessLogic.AssertCheck;
 import BusinessLogic.Base;
 import Pages.InsertPage;
-import Pages.PlayersListPage;
 import org.testng.annotations.Test;
 
 import java.text.DateFormat;
@@ -14,6 +13,7 @@ import java.util.Date;
  * Created by Евгений on 17.09.2015.
  */
 public class CreatePlayerTest extends Base{
+
 
     @Test
     public void createPlayerTest() throws InterruptedException {

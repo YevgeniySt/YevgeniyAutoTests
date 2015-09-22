@@ -1,5 +1,6 @@
 package Tests;
 
+
 import BusinessLogic.AssertCheck;
 import BusinessLogic.Base;
 import org.testng.annotations.*;
@@ -9,11 +10,12 @@ import org.testng.annotations.*;
  */
 public class LoginTests extends Base{
 
+
     @Test
     public void LoginPositiveTest() throws InterruptedException {
 
-        loginAs("admin", "123");
 
+        loginAs("admin","123");
         playersListPage.isUserNameDisplayed();
     }
 

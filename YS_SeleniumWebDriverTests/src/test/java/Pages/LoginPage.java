@@ -47,6 +47,13 @@ public class LoginPage {
         return new PlayersListPage(driver);
     }
 
+     /*public void clickOnLogin() {
+        loginButton.click();
+
+    }*/
+
+
+
     public String getErrorLoginText(){
         return errorLoginText.getText();
     }
