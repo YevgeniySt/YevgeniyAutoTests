@@ -45,7 +45,10 @@ public class TransactionsInsertPage {
         notesTextArea.sendKeys(notes);
     }
 
-    public void clickSave() {
+    public PlayersEditPage clickSave() {
         saveButton.click();
+        return new PlayersEditPage(driver);
     }
+
+
 }

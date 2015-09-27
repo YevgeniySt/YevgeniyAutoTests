@@ -1,12 +1,16 @@
 package BusinessLogic;
 
+import Objects.Player;
+import Objects.PlayerBuilder;
 import Pages.LoginPage;
 import Pages.PlayersListPage;
-import org.openqa.selenium.JavascriptExecutor;
+import Utils.AssertCheck;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.*;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 /**
@@ -17,42 +21,29 @@ public class Base {
     public WebDriver driver;
     public LoginPage loginPage;
     public PlayersListPage playersListPage;
-
-
-
+    public AssertCheck assertCheck;
 
     @BeforeMethod
-    public void openSite() {
+    public void openSiteAndLogin() {
+        assertCheck = new AssertCheck(driver);
+        assertCheck.clearListOfAsserts();
         driver = new FirefoxDriver();
         driver.get("http://193.138.245.222:81/auth/login");
+        driver.manage().window().maximize();
         loginPage = new LoginPage(driver);
+
+
+
+
+
+        loginPage.setUserNameField("admin");
+        loginPage.setPasswordField("123");
+        playersListPage = loginPage.clickOnLogin();
     }
 
     @AfterMethod
     public void closeSite() {
         driver.close();
     }
-
-    public void loginAs(String admin, String password) {
-        loginPage.setUserNameField(admin);
-        loginPage.setPasswordField(password);
-        playersListPage = loginPage.clickOnLogin();
-    }
-
-    public double convertStringTodouble(String actualValue) throws ParseException {
-        String currentRealMoneySubstring = actualValue;
-        currentRealMoneySubstring = currentRealMoneySubstring.replaceAll("[$,]+", "");
-        return new Double(currentRealMoneySubstring);
-    }
-
-    /*public void waitForAjax() throws InterruptedException {
-        while (true) // Handle timeout somewhere
-        {
-            Boolean ajaxIsComplete = (Boolean) ((JavascriptExecutor) driver).executeScript("return $.active == 0");
-            if (ajaxIsComplete)
-                break;
-            Thread.sleep(1000);
-        }
-    }*/
 }
 

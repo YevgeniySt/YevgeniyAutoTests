@@ -1,6 +1,11 @@
 package Tests;
 
-import BusinessLogic.AssertCheck;
+
+import BusinessLogic.InsertPageActions;
+import BusinessLogic.PlayersListPageActions;
+import Objects.Player;
+import Objects.PlayerBuilder;
+import Pages.PlayersEditPage;
 import BusinessLogic.Base;
 import Pages.InsertPage;
 import org.testng.annotations.Test;
@@ -18,66 +23,55 @@ public class CreatePlayerTest extends Base{
     @Test
     public void createPlayerTest() throws InterruptedException {
 
-        //create expected values
-        DateFormat dateFormat = new SimpleDateFormat("MMddHHmmss");
-        Date date = new Date();
-        String expectedUserName = "UN" + String.valueOf(dateFormat.format(date));
-        String expectedPassword = "Password1";
-        String expectedEmail = expectedUserName + "@mail.ru";
-        String expectedPhone = "123456";
-        String expectedGender = "Male";
-        boolean expectedPayment = Boolean.parseBoolean("true");
-        String expectedRealMoney = "$0.00";
-        String expectedFunMoney = "1,00.00";
-        String expectedBonusDollars = "$0.005";
-        String expectedLoyaltyPoints = "0.00 LP";
 
-        //Fill data and login
-        loginAs("admin", "123");
+        Player player =PlayerBuilder.aPlayer()
+                .withUserName("UN" + String.valueOf(new SimpleDateFormat("MMddHHmmss").format(new Date())))
+                .withPassword("Password1")
+                .withEmail("UN" + String.valueOf(new SimpleDateFormat("MMddHHmmss").format(new Date()))+"@mail.ru")
+                .withPhone("123456")
+                .withGender("Male")
+                .withPayment(true)
+                .withRealMoney("$0.00")
+                .withFunMoney("1,00.00")
+                .withBonusDollars("$0.005")
+                .withLoyaltyPoints("0.00 LP").build();
 
-        //create instance of Insert Page and click Insert
+        //click Insert
         InsertPage insertPage = playersListPage.clickInsert();
-
-        //fill fields on Insert page and click Save
-        insertPage.setUsernameField(expectedUserName);
-        insertPage.setEmailField(expectedEmail);
-        insertPage.setPasswordField(expectedPassword);
-        insertPage.setPasswordConfirmField(expectedPassword);
-        insertPage.setPhoneField(expectedPhone);
-        insertPage.clickOnSaveButton();
-
-
-        //set username for search and click search
-        playersListPage.setUserNameField(expectedUserName);
-        playersListPage.clickSearchButton();
+        //set values
+        InsertPageActions.setValuesForNewPlayer(insertPage, player.userName, player.email, player.password, player.phone);
+        //click save
+        InsertPageActions.clickSaveButton(insertPage);
+        //search for Player
+        PlayersListPageActions.searchForPlayer(playersListPage, player.userName);
         //click Edit
-        playersListPage.clickEditButton();
+        PlayersEditPage playersEditPage = playersListPage.clickEditButton();
 
 
         //get players values
-        String userNameActualValue = insertPage.getUserNameActualValue();
-        String actualEmail = insertPage.getEmailActualValue();
-        String actualPhone = insertPage.getPhoneActualValue();
-        String actualGender = insertPage.getGenderActualValue();
-        boolean actualPaymentCheckboxState = insertPage.getPaymentActualValue();
-        String actualRealMoney = insertPage.getRealMoneyActualValue();
-        String actualFunMoney = insertPage.getFunMoneyActualValue();
-        String actualBonusDollars = insertPage.getBonusDollarsActualValue();
-        String actualLoyaltyPoints = insertPage.getLoyaltyPointsActualValue();
+        String userNameActualValue = playersEditPage.getUserNameActualValue();
+        String actualEmail = playersEditPage.getEmailActualValue();
+        String actualPhone = playersEditPage.getPhoneActualValue();
+        String actualGender = playersEditPage.getGenderActualValue();
+        boolean actualPaymentCheckboxState = playersEditPage.getPaymentActualValue();
+        String actualRealMoney = playersEditPage.getRealMoneyActualValue();
+        String actualFunMoney = playersEditPage.getFunMoneyActualValue();
+        String actualBonusDollars = playersEditPage.getBonusDollarsActualValue();
+        String actualLoyaltyPoints = playersEditPage.getLoyaltyPointsActualValue();
 
 
         //check values
-        AssertCheck assertCheck = new AssertCheck(driver);
 
-        assertCheck.assertEquals(userNameActualValue, expectedUserName);
-        assertCheck.assertEquals(actualEmail, expectedEmail);
-        assertCheck.assertEquals(actualPhone, expectedPhone);
-        assertCheck.assertEquals(actualGender, expectedGender);
-        assertCheck.assertEquals(actualPaymentCheckboxState, expectedPayment);
-        assertCheck.assertEquals(actualRealMoney, expectedRealMoney);
-        assertCheck.assertEquals(actualFunMoney, expectedFunMoney);
-        assertCheck.assertEquals(actualBonusDollars, expectedBonusDollars);
-        assertCheck.assertEquals(actualLoyaltyPoints, expectedLoyaltyPoints);
+
+        assertCheck.assertEquals(userNameActualValue, player.userName);
+        assertCheck.assertEquals(actualEmail, player.email);
+        assertCheck.assertEquals(actualPhone, player.phone);
+        assertCheck.assertEquals(actualGender, player.gender);
+        assertCheck.assertEquals(actualPaymentCheckboxState, player.payment);
+        assertCheck.assertEquals(actualRealMoney, player.realMoney);
+        assertCheck.assertEquals(actualFunMoney, player.funMoney);
+        assertCheck.assertEquals(actualBonusDollars, player.bonusDollars);
+        assertCheck.assertEquals(actualLoyaltyPoints, player.loyaltyPoints);
         //print errors
         assertCheck.printErrors();
 

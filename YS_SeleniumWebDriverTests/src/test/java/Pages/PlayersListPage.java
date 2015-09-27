@@ -51,7 +51,8 @@ public class PlayersListPage {
         searchButton.click();
     }
 
-    public void clickEditButton() {
+    public PlayersEditPage clickEditButton() {
         editButton.click();
+        return new PlayersEditPage(driver);
     }
 }

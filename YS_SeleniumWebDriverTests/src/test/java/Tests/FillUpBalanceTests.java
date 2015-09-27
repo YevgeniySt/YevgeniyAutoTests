@@ -1,13 +1,14 @@
 package Tests;
 
-import BusinessLogic.AssertCheck;
 import BusinessLogic.Base;
-import Pages.InsertPage;
+import BusinessLogic.PlayersListPageActions;
+import BusinessLogic.TransactionsInsertPageActions;
+import Pages.PlayersEditPage;
 import Pages.TransactionsInsertPage;
+import Utils.ConvertStrToDbl;
+import Utils.WindowsHandler;
 import org.testng.annotations.Test;
 import java.text.ParseException;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by Евгений on 19.09.2015.
@@ -19,56 +20,37 @@ public class FillUpBalanceTests extends Base{
 
         //create values
         String expectedUserName = "UN914222528";
-        String mainWindow= driver.getWindowHandle();
-        List<String> listOfWindows = new LinkedList<String>();
+        String mainWindow = WindowsHandler.getCurrentWindow(driver);
         String expectedAccount = "Real Money";
         String expectedRealMoney = "598";
         String expectedNotes = "HElloWorld!";
 
-
-        //login and open user for editing
-        loginAs("admin", "123");
-
-        playersListPage.setUserNameField(expectedUserName);
-        playersListPage.clickSearchButton();
-        playersListPage.clickEditButton();
-
-        //click on add Transaction
-        InsertPage insertPage = new InsertPage(driver);
-        //read current Real Money balance into int
-        double currentRealMoneyBalance = convertStringTodouble(insertPage.getRealMoneyActualValue());
+        //search for player
+        PlayersListPageActions.searchForPlayer(playersListPage, expectedUserName);
+        //click edit
+        PlayersEditPage playersEditPage = playersListPage.clickEditButton();
+        //read current Real Money balance into double
+        double currentRealMoneyBalance = ConvertStrToDbl.convertStringToDouble(playersEditPage.getRealMoneyActualValue());
 
         //click add transaction button
-        TransactionsInsertPage transactionsInsertPage= insertPage.clickOnAddTransactionButton();
-
-        //add mainwindow into list
-        listOfWindows.add(mainWindow);
-
-        for(String winHandle :driver.getWindowHandles()) {
-             driver.switchTo().window(winHandle);
-            listOfWindows.add(driver.switchTo().window(winHandle).getWindowHandle());
-
-            if (driver.getTitle().equals("Transactions - Insert")) {
-                break;
-            }
-        }
+        TransactionsInsertPage transactionsInsertPage= playersEditPage.clickOnAddTransactionButton();
+        //switch to new window
+        WindowsHandler.switchToWindowByTitle(driver, "Transactions - Insert");
 
         //fill mandatory fields
 
-        transactionsInsertPage.setAccountCombobox(expectedAccount);
-        transactionsInsertPage.setAmount(expectedRealMoney);
-        transactionsInsertPage.setNotes(expectedNotes);
-        transactionsInsertPage.clickSave();
+        TransactionsInsertPageActions.setValuesForTransaction(transactionsInsertPage, expectedAccount, expectedRealMoney, expectedNotes);
+        //click save
+        playersEditPage =transactionsInsertPage.clickSave();
 
         Thread.sleep(2000);
-        //waitForAjax();
 
-        driver.switchTo().window(mainWindow);
-        double actualRealMoneyBalance = convertStringTodouble(insertPage.getRealMoneyActualValue());
+        WindowsHandler.switchToWindow(driver, mainWindow);
 
+        //read RealMoneyBalance into double
+        double actualRealMoneyBalance = ConvertStrToDbl.convertStringToDouble(playersEditPage.getRealMoneyActualValue());
 
-        AssertCheck assertCheck = new AssertCheck(driver);
-
+        //checks
         assertCheck.assertEquals(actualRealMoneyBalance, currentRealMoneyBalance+Double.parseDouble(expectedRealMoney));
         assertCheck.printErrors();
 
@@ -79,57 +61,38 @@ public class FillUpBalanceTests extends Base{
 
         //create values
         String expectedUserName = "UN914222528";
-        String mainWindow= driver.getWindowHandle();
-        List<String> listOfWindows = new LinkedList<String>();
+        String mainWindow = WindowsHandler.getCurrentWindow(driver);
         String expectedAccount = "Fun Money";
         String expectedFunMoney = "597";
         String expectedNotes = "HElloWorld!";
 
+        //search for player
+        PlayersListPageActions.searchForPlayer(playersListPage, expectedUserName);
+        //click edit
+        PlayersEditPage playersEditPage = playersListPage.clickEditButton();
 
-        //login and open user for editing
-        loginAs("admin", "123");
+        //read current Fun Money balance into double
 
-        playersListPage.setUserNameField(expectedUserName);
-        playersListPage.clickSearchButton();
-        playersListPage.clickEditButton();
-
-
-
-        //click on add Transaction
-        InsertPage insertPage = new InsertPage(driver);
-        //read current Fun Money balance into int
-
-        double currentFunMoneyBalance = convertStringTodouble(insertPage.getFunMoneyActualValue());
+        double currentFunMoneyBalance = ConvertStrToDbl.convertStringToDouble(playersEditPage.getFunMoneyActualValue());
 
         //click add transaction button
-        TransactionsInsertPage transactionsInsertPage= insertPage.clickOnAddTransactionButton();
+        TransactionsInsertPage transactionsInsertPage= playersEditPage.clickOnAddTransactionButton();
 
-        //add mainwindow into list
-        listOfWindows.add(mainWindow);
-
-        for(String winHandle :driver.getWindowHandles()) {
-            driver.switchTo().window(winHandle);
-            listOfWindows.add(driver.switchTo().window(winHandle).getWindowHandle());
-
-            if (driver.getTitle().equals("Transactions - Insert")) {
-                break;
-            }
-        }
+        //switch to new window
+        WindowsHandler.switchToWindowByTitle(driver, "Transactions - Insert");
 
         //fill mandatory fields
-
-        transactionsInsertPage.setAccountCombobox(expectedAccount);
-        transactionsInsertPage.setAmount(expectedFunMoney);
-        transactionsInsertPage.setNotes(expectedNotes);
-        transactionsInsertPage.clickSave();
+        TransactionsInsertPageActions.setValuesForTransaction(transactionsInsertPage, expectedAccount, expectedFunMoney, expectedNotes);
+        //click save
+        playersEditPage =transactionsInsertPage.clickSave();
         Thread.sleep(2000);
-        //waitForAjax();
 
-        driver.switchTo().window(mainWindow);
+        //switch to main window
+        WindowsHandler.switchToWindow(driver,mainWindow);
+        //read actual fun money into double
+        double actualFunMoney = ConvertStrToDbl.convertStringToDouble(playersEditPage.getFunMoneyActualValue());
 
-        double actualFunMoney = convertStringTodouble(insertPage.getFunMoneyActualValue());
-
-        AssertCheck assertCheck = new AssertCheck(driver);
+        //checks
         assertCheck.assertEquals(actualFunMoney, currentFunMoneyBalance + Double.parseDouble(expectedFunMoney));
         assertCheck.printErrors();
 
@@ -141,58 +104,39 @@ public class FillUpBalanceTests extends Base{
 
         //create values
         String expectedUserName = "UN914222528";
-        String mainWindow= driver.getWindowHandle();
-        List<String> listOfWindows = new LinkedList<String>();
+        String mainWindow = WindowsHandler.getCurrentWindow(driver);
         String expectedAccount = "Bonus Dollars";
         String expectedBonusDollars = "597";
         String expectedNotes = "HElloWorld!";
 
+        //search for player
+        PlayersListPageActions.searchForPlayer(playersListPage, expectedUserName);
+        //click edit
+        PlayersEditPage playersEditPage = playersListPage.clickEditButton();
 
-        //login and open user for editing
-        loginAs("admin", "123");
-
-        playersListPage.setUserNameField(expectedUserName);
-        playersListPage.clickSearchButton();
-        playersListPage.clickEditButton();
-
-
-
-        //click on add Transaction
-        InsertPage insertPage = new InsertPage(driver);
-        //read current Fun Money balance into int
-        double currentBonusDollarsBalance = convertStringTodouble(insertPage.getBonusDollarsActualValue());
-
+        //read current Fun Money balance into double
+        double currentBonusDollarsBalance = ConvertStrToDbl.convertStringToDouble(playersEditPage.getBonusDollarsActualValue());
 
         //click add transaction button
-        TransactionsInsertPage transactionsInsertPage= insertPage.clickOnAddTransactionButton();
+        TransactionsInsertPage transactionsInsertPage= playersEditPage.clickOnAddTransactionButton();
 
-        //add mainwindow into list
-        listOfWindows.add(mainWindow);
-
-        for(String winHandle :driver.getWindowHandles()) {
-            driver.switchTo().window(winHandle);
-            listOfWindows.add(driver.switchTo().window(winHandle).getWindowHandle());
-
-            if (driver.getTitle().equals("Transactions - Insert")) {
-                break;
-            }
-        }
+        //switch to new window
+        WindowsHandler.switchToWindowByTitle(driver, "Transactions - Insert");
 
         //fill mandatory fields
+        TransactionsInsertPageActions.setValuesForTransaction(transactionsInsertPage, expectedAccount,expectedBonusDollars, expectedNotes);
 
-        transactionsInsertPage.setAccountCombobox(expectedAccount);
-        transactionsInsertPage.setAmount(expectedBonusDollars);
-        transactionsInsertPage.setNotes(expectedNotes);
-        transactionsInsertPage.clickSave();
+        //click save
+        playersEditPage =transactionsInsertPage.clickSave();
         Thread.sleep(2000);
-         //waitForAjax();
 
-        driver.switchTo().window(mainWindow);
+        //switch to main window
+        WindowsHandler.switchToWindow(driver, mainWindow);
+
         //read actual value
-        double actualBonusDollarsBalance = convertStringTodouble(insertPage.getBonusDollarsActualValue());
+        double actualBonusDollarsBalance = ConvertStrToDbl.convertStringToDouble(playersEditPage.getBonusDollarsActualValue());
 
         //checks
-        AssertCheck assertCheck = new AssertCheck(driver);
         assertCheck.assertEquals(actualBonusDollarsBalance, currentBonusDollarsBalance+Double.parseDouble(expectedBonusDollars));
         assertCheck.printErrors();
 

@@ -1,8 +1,10 @@
 package Tests;
 
 
-import BusinessLogic.AssertCheck;
+import Pages.LoginPage;
+import Utils.AssertCheck;
 import BusinessLogic.Base;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.*;
 
 /**
@@ -10,23 +12,28 @@ import org.testng.annotations.*;
  */
 public class LoginTests extends Base{
 
-
     @Test
     public void LoginPositiveTest() throws InterruptedException {
 
-
-        loginAs("admin","123");
         playersListPage.isUserNameDisplayed();
     }
-
+    @Override
+    @BeforeMethod
+    public void openSiteAndLogin() {
+        assertCheck = new AssertCheck(driver);
+        assertCheck.clearListOfAsserts();
+        driver = new FirefoxDriver();
+        driver.get("http://193.138.245.222:81/auth/login");
+        loginPage = new LoginPage(driver);
+        loginPage.setUserNameField("admin");
+        loginPage.setPasswordField("124");
+        playersListPage = loginPage.clickOnLogin();
+    }
     @Test
     public void LoginNegativeTest() throws InterruptedException {
 
-        loginAs("admin","1234");
-
         String expectedErrorLabel = loginPage.getErrorLoginText();
 
-        AssertCheck assertCheck = new AssertCheck(driver);
         assertCheck.assertEquals(expectedErrorLabel, "Invalid username or passord");
         assertCheck.printErrors();
     }

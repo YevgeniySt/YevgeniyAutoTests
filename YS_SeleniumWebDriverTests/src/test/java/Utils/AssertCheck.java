@@ -1,4 +1,4 @@
-package BusinessLogic;
+package Utils;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -15,12 +15,11 @@ public class AssertCheck {
     public WebDriver driver;
 
     public AssertCheck(WebDriver driver) {
-        listOfFails.clear();
         this.driver = driver;
 
     }
 
-    public void assertEquals(String actualValue, String expectedValue) {
+    public  void assertEquals(Object actualValue,Object expectedValue) {
 
         try {
             Assert.assertEquals(actualValue, expectedValue);
@@ -29,42 +28,20 @@ public class AssertCheck {
             listOfFails.add(e.getMessage());
 
         }
-
     }
 
-    public void assertEquals(boolean actualValue, boolean expectedValue) {
-
-        try {
-            Assert.assertEquals(actualValue, expectedValue);
-        } catch (AssertionError e) {
-
-            listOfFails.add(e.getMessage());
-
-        }
-
-    }
-
-    public void printErrors(){
+    public  void printErrors(){
 
         if (!listOfFails.isEmpty()) {
 
             for (String r : listOfFails) {
                 System.out.println(r + "\n");
-
             }
             Assert.fail();
         }
     }
 
-
-    public void assertEquals(double actualValue, double expectedValue) {
-
-        try {
-            Assert.assertEquals(actualValue, expectedValue);
-        } catch (AssertionError e) {
-
-            listOfFails.add(e.getMessage());
-
-        }
+    public void clearListOfAsserts() {
+        listOfFails.clear();
     }
 }
