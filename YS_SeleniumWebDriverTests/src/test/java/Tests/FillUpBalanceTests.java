@@ -34,8 +34,6 @@ public class FillUpBalanceTests extends Base{
 
         //click add transaction button
         TransactionsInsertPage transactionsInsertPage= playersEditPage.clickOnAddTransactionButton();
-        //switch to new window
-        WindowsHandler.switchToWindowByTitle(driver, "Transactions - Insert");
 
         //fill mandatory fields
 
@@ -44,8 +42,6 @@ public class FillUpBalanceTests extends Base{
         playersEditPage =transactionsInsertPage.clickSave();
 
         Thread.sleep(2000);
-
-        WindowsHandler.switchToWindow(driver, mainWindow);
 
         //read RealMoneyBalance into double
         double actualRealMoneyBalance = ConvertStringToDouble.convertStringToDouble(playersEditPage.getRealMoneyActualValue());
@@ -116,18 +112,12 @@ public class FillUpBalanceTests extends Base{
         //click add transaction button
         TransactionsInsertPage transactionsInsertPage= playersEditPage.clickOnAddTransactionButton();
 
-        //switch to new window
-        WindowsHandler.switchToWindowByTitle(driver, "Transactions - Insert");
-
         //fill mandatory fields
         TransactionsInsertPageActions.setValuesForTransaction(transactionsInsertPage, expectedAccount,expectedBonusDollars, expectedNotes);
 
         //click save
         playersEditPage =transactionsInsertPage.clickSave();
         Thread.sleep(2000);
-
-        //switch to main window
-        WindowsHandler.switchToWindow(driver, mainWindow);
 
         //read actual value
         double actualBonusDollarsBalance = ConvertStringToDouble.convertStringToDouble(playersEditPage.getBonusDollarsActualValue());
