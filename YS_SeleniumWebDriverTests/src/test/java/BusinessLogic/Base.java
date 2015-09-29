@@ -5,6 +5,7 @@ import Objects.PlayerBuilder;
 import Pages.LoginPage;
 import Pages.PlayersListPage;
 import Utils.AssertCheck;
+import Utils.WindowsHandler;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.*;
@@ -22,10 +23,11 @@ public class Base {
     public LoginPage loginPage;
     public PlayersListPage playersListPage;
     public AssertCheck assertCheck;
+    public static String mainWindow;
 
     @BeforeMethod
     public void openSiteAndLogin() {
-        assertCheck = new AssertCheck(driver);
+        assertCheck = new AssertCheck();
         assertCheck.clearListOfAsserts();
         driver = new FirefoxDriver();
         driver.get("http://193.138.245.222:81/auth/login");
@@ -39,6 +41,7 @@ public class Base {
         loginPage.setUserNameField("admin");
         loginPage.setPasswordField("123");
         playersListPage = loginPage.clickOnLogin();
+        mainWindow = WindowsHandler.getCurrentWindow(driver);
     }
 
     @AfterMethod

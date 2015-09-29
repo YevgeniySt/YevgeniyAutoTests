@@ -1,5 +1,6 @@
 package Pages;
 
+import Utils.WindowsHandler;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -123,6 +124,7 @@ public class InsertPage {
 
     public TransactionsInsertPage clickOnAddTransactionButton(){
         addTransactionButton.click();
+        WindowsHandler.switchToWindowByTitle(driver, "Transactions - Insert");
         return new TransactionsInsertPage(driver);
     }
 }

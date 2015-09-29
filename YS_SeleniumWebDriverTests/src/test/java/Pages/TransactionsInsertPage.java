@@ -1,5 +1,7 @@
 package Pages;
 
+import BusinessLogic.Base;
+import Utils.WindowsHandler;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -47,6 +49,7 @@ public class TransactionsInsertPage {
 
     public PlayersEditPage clickSave() {
         saveButton.click();
+        WindowsHandler.switchToWindow(driver, Base.mainWindow);
         return new PlayersEditPage(driver);
     }
 

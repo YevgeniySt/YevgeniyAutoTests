@@ -1,6 +1,5 @@
 package Utils;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 import java.util.ArrayList;
@@ -12,12 +11,7 @@ import java.util.List;
 public class AssertCheck {
     List<String> listOfFails = new ArrayList<String>();
 
-    public WebDriver driver;
 
-    public AssertCheck(WebDriver driver) {
-        this.driver = driver;
-
-    }
 
     public  void assertEquals(Object actualValue,Object expectedValue) {
 

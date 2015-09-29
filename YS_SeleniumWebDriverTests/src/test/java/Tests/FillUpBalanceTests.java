@@ -5,7 +5,7 @@ import BusinessLogic.PlayersListPageActions;
 import BusinessLogic.TransactionsInsertPageActions;
 import Pages.PlayersEditPage;
 import Pages.TransactionsInsertPage;
-import Utils.ConvertStrToDbl;
+import Utils.ConvertStringToDouble;
 import Utils.WindowsHandler;
 import org.testng.annotations.Test;
 import java.text.ParseException;
@@ -19,7 +19,7 @@ public class FillUpBalanceTests extends Base{
     public void fillUpRealMoneyTest() throws ParseException, InterruptedException {
 
         //create values
-        String expectedUserName = "UN914222528";
+        String expectedUserName = "UN";
         String mainWindow = WindowsHandler.getCurrentWindow(driver);
         String expectedAccount = "Real Money";
         String expectedRealMoney = "598";
@@ -30,7 +30,7 @@ public class FillUpBalanceTests extends Base{
         //click edit
         PlayersEditPage playersEditPage = playersListPage.clickEditButton();
         //read current Real Money balance into double
-        double currentRealMoneyBalance = ConvertStrToDbl.convertStringToDouble(playersEditPage.getRealMoneyActualValue());
+        double currentRealMoneyBalance = ConvertStringToDouble.convertStringToDouble(playersEditPage.getRealMoneyActualValue());
 
         //click add transaction button
         TransactionsInsertPage transactionsInsertPage= playersEditPage.clickOnAddTransactionButton();
@@ -48,7 +48,7 @@ public class FillUpBalanceTests extends Base{
         WindowsHandler.switchToWindow(driver, mainWindow);
 
         //read RealMoneyBalance into double
-        double actualRealMoneyBalance = ConvertStrToDbl.convertStringToDouble(playersEditPage.getRealMoneyActualValue());
+        double actualRealMoneyBalance = ConvertStringToDouble.convertStringToDouble(playersEditPage.getRealMoneyActualValue());
 
         //checks
         assertCheck.assertEquals(actualRealMoneyBalance, currentRealMoneyBalance+Double.parseDouble(expectedRealMoney));
@@ -60,8 +60,7 @@ public class FillUpBalanceTests extends Base{
     public void fillUpFunMoneyTest() throws ParseException, InterruptedException {
 
         //create values
-        String expectedUserName = "UN914222528";
-        String mainWindow = WindowsHandler.getCurrentWindow(driver);
+        String expectedUserName = "UN";
         String expectedAccount = "Fun Money";
         String expectedFunMoney = "597";
         String expectedNotes = "HElloWorld!";
@@ -73,13 +72,10 @@ public class FillUpBalanceTests extends Base{
 
         //read current Fun Money balance into double
 
-        double currentFunMoneyBalance = ConvertStrToDbl.convertStringToDouble(playersEditPage.getFunMoneyActualValue());
+        double currentFunMoneyBalance = ConvertStringToDouble.convertStringToDouble(playersEditPage.getFunMoneyActualValue());
 
         //click add transaction button
         TransactionsInsertPage transactionsInsertPage= playersEditPage.clickOnAddTransactionButton();
-
-        //switch to new window
-        WindowsHandler.switchToWindowByTitle(driver, "Transactions - Insert");
 
         //fill mandatory fields
         TransactionsInsertPageActions.setValuesForTransaction(transactionsInsertPage, expectedAccount, expectedFunMoney, expectedNotes);
@@ -88,9 +84,9 @@ public class FillUpBalanceTests extends Base{
         Thread.sleep(2000);
 
         //switch to main window
-        WindowsHandler.switchToWindow(driver,mainWindow);
+
         //read actual fun money into double
-        double actualFunMoney = ConvertStrToDbl.convertStringToDouble(playersEditPage.getFunMoneyActualValue());
+        double actualFunMoney = ConvertStringToDouble.convertStringToDouble(playersEditPage.getFunMoneyActualValue());
 
         //checks
         assertCheck.assertEquals(actualFunMoney, currentFunMoneyBalance + Double.parseDouble(expectedFunMoney));
@@ -103,7 +99,7 @@ public class FillUpBalanceTests extends Base{
     public void fillUpBonusDollarsTest() throws ParseException, InterruptedException {
 
         //create values
-        String expectedUserName = "UN914222528";
+        String expectedUserName = "UN";
         String mainWindow = WindowsHandler.getCurrentWindow(driver);
         String expectedAccount = "Bonus Dollars";
         String expectedBonusDollars = "597";
@@ -115,7 +111,7 @@ public class FillUpBalanceTests extends Base{
         PlayersEditPage playersEditPage = playersListPage.clickEditButton();
 
         //read current Fun Money balance into double
-        double currentBonusDollarsBalance = ConvertStrToDbl.convertStringToDouble(playersEditPage.getBonusDollarsActualValue());
+        double currentBonusDollarsBalance = ConvertStringToDouble.convertStringToDouble(playersEditPage.getBonusDollarsActualValue());
 
         //click add transaction button
         TransactionsInsertPage transactionsInsertPage= playersEditPage.clickOnAddTransactionButton();
@@ -134,7 +130,7 @@ public class FillUpBalanceTests extends Base{
         WindowsHandler.switchToWindow(driver, mainWindow);
 
         //read actual value
-        double actualBonusDollarsBalance = ConvertStrToDbl.convertStringToDouble(playersEditPage.getBonusDollarsActualValue());
+        double actualBonusDollarsBalance = ConvertStringToDouble.convertStringToDouble(playersEditPage.getBonusDollarsActualValue());
 
         //checks
         assertCheck.assertEquals(actualBonusDollarsBalance, currentBonusDollarsBalance+Double.parseDouble(expectedBonusDollars));

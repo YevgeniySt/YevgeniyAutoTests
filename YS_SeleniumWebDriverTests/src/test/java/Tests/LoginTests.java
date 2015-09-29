@@ -20,7 +20,7 @@ public class LoginTests extends Base{
     @Override
     @BeforeMethod
     public void openSiteAndLogin() {
-        assertCheck = new AssertCheck(driver);
+        assertCheck = new AssertCheck();
         assertCheck.clearListOfAsserts();
         driver = new FirefoxDriver();
         driver.get("http://193.138.245.222:81/auth/login");
