@@ -1,5 +1,6 @@
 package BusinessLogic;
 
+import Objects.Player;
 import Pages.InsertPage;
 import Pages.PlayersListPage;
 
@@ -8,14 +9,14 @@ import Pages.PlayersListPage;
  */
 public class InsertPageActions {
 
-    public static void setValuesForNewPlayer(InsertPage insertPage,String expectedUserName,String expectedEmail, String expectedPassword, String expectedPhone ){
+    public static void setValuesForNewPlayer(InsertPage insertPage, Player expectedPlayer){
 
         //fill fields on Insert page and click Save
-        insertPage.setUsernameField(expectedUserName);
-        insertPage.setEmailField(expectedEmail);
-        insertPage.setPasswordField(expectedPassword);
-        insertPage.setPasswordConfirmField(expectedPassword);
-        insertPage.setPhoneField(expectedPhone);
+        insertPage.setUsernameField(expectedPlayer.userName);
+        insertPage.setEmailField(expectedPlayer.email);
+        insertPage.setPasswordField(expectedPlayer.password);
+        insertPage.setPasswordConfirmField(expectedPlayer.password);
+        insertPage.setPhoneField(expectedPlayer.phone);
     }
 
 

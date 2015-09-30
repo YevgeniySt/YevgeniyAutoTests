@@ -23,7 +23,7 @@ public class CreatePlayerTest extends Base{
     public void createPlayerTest() throws InterruptedException {
 
 
-        Player expectedPlayer =PlayerBuilder.aPlayer()
+        Player expectedPlayer =new PlayerBuilder()
                 .withUserName("UN" + String.valueOf(new SimpleDateFormat("MMddHHmmss").format(new Date())))
                 .withPassword("Password1")
                 .withEmail("UN" + String.valueOf(new SimpleDateFormat("MMddHHmmss").format(new Date()))+"@mail.ru")
@@ -38,18 +38,18 @@ public class CreatePlayerTest extends Base{
         //click Insert
         InsertPage insertPage = playersListPage.clickInsert();
         //set values
-        InsertPageActions.setValuesForNewPlayer(insertPage, expectedPlayer.userName, expectedPlayer.email, expectedPlayer.password, expectedPlayer.phone);
+        InsertPageActions.setValuesForNewPlayer(insertPage, expectedPlayer);
         //click save
         InsertPageActions.clickSaveButton(insertPage);
         //search for Player
-        PlayersListPageActions.searchForPlayer(playersListPage, expectedPlayer.userName);
+        PlayersListPageActions.searchForPlayer(playersListPage, expectedPlayer);
         //click Edit
         PlayersEditPage playersEditPage = playersListPage.clickEditButton();
 
 
         //get players values
 
-        Player actualPlayer =PlayerBuilder.aPlayer()
+        Player actualPlayer =new PlayerBuilder()
                 .withUserName(playersEditPage.getUserNameActualValue())
                 .withPassword("Password1")
                 .withEmail(playersEditPage.getEmailActualValue())

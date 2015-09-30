@@ -1,5 +1,6 @@
 package BusinessLogic;
 
+import Objects.Transaction;
 import Pages.TransactionsInsertPage;
 
 /**
@@ -7,10 +8,10 @@ import Pages.TransactionsInsertPage;
  */
 public class TransactionsInsertPageActions {
 
-    public static void setValuesForTransaction(TransactionsInsertPage transactionsInsertPage, String expectedAccount, String expectedFunMoney, String expectedNotes) {
-        transactionsInsertPage.setAccountCombobox(expectedAccount);
-        transactionsInsertPage.setAmount(expectedFunMoney);
-        transactionsInsertPage.setNotes(expectedNotes);
+    public static void setValuesForTransaction(TransactionsInsertPage transactionsInsertPage, Transaction transaction) {
+        transactionsInsertPage.setAccountCombobox(transaction.account);
+        transactionsInsertPage.setAmount(transaction.amount);
+        transactionsInsertPage.setNotes(transaction.notes);
 
     }
 

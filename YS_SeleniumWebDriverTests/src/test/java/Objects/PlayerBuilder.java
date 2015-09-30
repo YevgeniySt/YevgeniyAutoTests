@@ -15,14 +15,6 @@ public class PlayerBuilder {
     private String bonusDollars;
     private String loyaltyPoints;
 
-    private PlayerBuilder() {
-    }
-
-    public static PlayerBuilder aPlayer() {
-        return new PlayerBuilder();
-    }
-
-
     public PlayerBuilder withUserName(String userName) {
         this.userName = userName;
         return this;

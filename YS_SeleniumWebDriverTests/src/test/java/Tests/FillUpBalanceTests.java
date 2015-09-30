@@ -3,12 +3,17 @@ package Tests;
 import BusinessLogic.Base;
 import BusinessLogic.PlayersListPageActions;
 import BusinessLogic.TransactionsInsertPageActions;
+import Objects.Player;
+import Objects.PlayerBuilder;
+import Objects.Transaction;
+import Objects.TransactionBuilder;
 import Pages.PlayersEditPage;
 import Pages.TransactionsInsertPage;
-import Utils.ConvertStringToDouble;
-import Utils.WindowsHandler;
+import Utils.Converter;
+
 import org.testng.annotations.Test;
 import java.text.ParseException;
+
 
 /**
  * Created by Евгений on 19.09.2015.
@@ -19,35 +24,38 @@ public class FillUpBalanceTests extends Base{
     public void fillUpRealMoneyTest() throws ParseException, InterruptedException {
 
         //create values
-        String expectedUserName = "UN";
-        String mainWindow = WindowsHandler.getCurrentWindow(driver);
-        String expectedAccount = "Real Money";
-        String expectedRealMoney = "598";
-        String expectedNotes = "HElloWorld!";
+        Player expectedPlayer = new PlayerBuilder()
+                .withUserName("UN")
+                .build();
+
+        Transaction transaction = new TransactionBuilder()
+                .withAccount("Real Money")
+                .withAmount("597")
+                .withNotes("HElloWorld!").build();
 
         //search for player
-        PlayersListPageActions.searchForPlayer(playersListPage, expectedUserName);
+        PlayersListPageActions.searchForPlayer(playersListPage, expectedPlayer);
         //click edit
         PlayersEditPage playersEditPage = playersListPage.clickEditButton();
         //read current Real Money balance into double
-        double currentRealMoneyBalance = ConvertStringToDouble.convertStringToDouble(playersEditPage.getRealMoneyActualValue());
+        double currentRealMoneyBalance = Converter.convertStringToDouble(playersEditPage.getRealMoneyActualValue());
 
         //click add transaction button
         TransactionsInsertPage transactionsInsertPage= playersEditPage.clickOnAddTransactionButton();
 
         //fill mandatory fields
 
-        TransactionsInsertPageActions.setValuesForTransaction(transactionsInsertPage, expectedAccount, expectedRealMoney, expectedNotes);
+        TransactionsInsertPageActions.setValuesForTransaction(transactionsInsertPage, transaction);
         //click save
         playersEditPage =transactionsInsertPage.clickSave();
 
         Thread.sleep(2000);
 
         //read RealMoneyBalance into double
-        double actualRealMoneyBalance = ConvertStringToDouble.convertStringToDouble(playersEditPage.getRealMoneyActualValue());
+        double actualRealMoneyBalance = Converter.convertStringToDouble(playersEditPage.getRealMoneyActualValue());
 
         //checks
-        assertCheck.assertEquals(actualRealMoneyBalance, currentRealMoneyBalance+Double.parseDouble(expectedRealMoney));
+        assertCheck.assertEquals(actualRealMoneyBalance, currentRealMoneyBalance+Double.parseDouble(transaction.amount));
         assertCheck.printErrors();
 
     }
@@ -56,25 +64,29 @@ public class FillUpBalanceTests extends Base{
     public void fillUpFunMoneyTest() throws ParseException, InterruptedException {
 
         //create values
-        String expectedUserName = "UN";
-        String expectedAccount = "Fun Money";
-        String expectedFunMoney = "597";
-        String expectedNotes = "HElloWorld!";
+        Player expectedPlayer = new PlayerBuilder()
+                .withUserName("UN")
+                .build();
+
+        Transaction transaction = new TransactionBuilder()
+                .withAccount("Fun Money")
+                .withAmount("597")
+                .withNotes("HElloWorld!").build();
 
         //search for player
-        PlayersListPageActions.searchForPlayer(playersListPage, expectedUserName);
+        PlayersListPageActions.searchForPlayer(playersListPage, expectedPlayer);
         //click edit
         PlayersEditPage playersEditPage = playersListPage.clickEditButton();
 
         //read current Fun Money balance into double
 
-        double currentFunMoneyBalance = ConvertStringToDouble.convertStringToDouble(playersEditPage.getFunMoneyActualValue());
+        double currentFunMoneyBalance = Converter.convertStringToDouble(playersEditPage.getFunMoneyActualValue());
 
         //click add transaction button
         TransactionsInsertPage transactionsInsertPage= playersEditPage.clickOnAddTransactionButton();
 
         //fill mandatory fields
-        TransactionsInsertPageActions.setValuesForTransaction(transactionsInsertPage, expectedAccount, expectedFunMoney, expectedNotes);
+        TransactionsInsertPageActions.setValuesForTransaction(transactionsInsertPage, transaction);
         //click save
         playersEditPage =transactionsInsertPage.clickSave();
         Thread.sleep(2000);
@@ -82,10 +94,10 @@ public class FillUpBalanceTests extends Base{
         //switch to main window
 
         //read actual fun money into double
-        double actualFunMoney = ConvertStringToDouble.convertStringToDouble(playersEditPage.getFunMoneyActualValue());
+        double actualFunMoney = Converter.convertStringToDouble(playersEditPage.getFunMoneyActualValue());
 
         //checks
-        assertCheck.assertEquals(actualFunMoney, currentFunMoneyBalance + Double.parseDouble(expectedFunMoney));
+        assertCheck.assertEquals(actualFunMoney, currentFunMoneyBalance + Double.parseDouble(transaction.amount));
         assertCheck.printErrors();
 
 
@@ -95,35 +107,38 @@ public class FillUpBalanceTests extends Base{
     public void fillUpBonusDollarsTest() throws ParseException, InterruptedException {
 
         //create values
-        String expectedUserName = "UN";
-        String mainWindow = WindowsHandler.getCurrentWindow(driver);
-        String expectedAccount = "Bonus Dollars";
-        String expectedBonusDollars = "597";
-        String expectedNotes = "HElloWorld!";
+        Player expectedPlayer = new PlayerBuilder()
+                .withUserName("UN")
+                .build();
+
+        Transaction transaction = new TransactionBuilder()
+                .withAccount("Bonus Dollars")
+                .withAmount("597")
+                .withNotes("HElloWorld!").build();
 
         //search for player
-        PlayersListPageActions.searchForPlayer(playersListPage, expectedUserName);
+        PlayersListPageActions.searchForPlayer(playersListPage, expectedPlayer);
         //click edit
         PlayersEditPage playersEditPage = playersListPage.clickEditButton();
 
         //read current Fun Money balance into double
-        double currentBonusDollarsBalance = ConvertStringToDouble.convertStringToDouble(playersEditPage.getBonusDollarsActualValue());
+        double currentBonusDollarsBalance = Converter.convertStringToDouble(playersEditPage.getBonusDollarsActualValue());
 
         //click add transaction button
         TransactionsInsertPage transactionsInsertPage= playersEditPage.clickOnAddTransactionButton();
 
         //fill mandatory fields
-        TransactionsInsertPageActions.setValuesForTransaction(transactionsInsertPage, expectedAccount,expectedBonusDollars, expectedNotes);
+        TransactionsInsertPageActions.setValuesForTransaction(transactionsInsertPage, transaction);
 
         //click save
         playersEditPage =transactionsInsertPage.clickSave();
         Thread.sleep(2000);
 
         //read actual value
-        double actualBonusDollarsBalance = ConvertStringToDouble.convertStringToDouble(playersEditPage.getBonusDollarsActualValue());
+        double actualBonusDollarsBalance = Converter.convertStringToDouble(playersEditPage.getBonusDollarsActualValue());
 
         //checks
-        assertCheck.assertEquals(actualBonusDollarsBalance, currentBonusDollarsBalance+Double.parseDouble(expectedBonusDollars));
+        assertCheck.assertEquals(actualBonusDollarsBalance, currentBonusDollarsBalance+Double.parseDouble(transaction.amount));
         assertCheck.printErrors();
 
     }

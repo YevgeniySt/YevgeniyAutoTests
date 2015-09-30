@@ -1,5 +1,6 @@
 package BusinessLogic;
 
+import Objects.Player;
 import Pages.PlayersListPage;
 
 /**
@@ -7,8 +8,8 @@ import Pages.PlayersListPage;
  */
 public class PlayersListPageActions {
 
-    public static void searchForPlayer(PlayersListPage playersListPage,String expectedUserName){
-        playersListPage.setUserNameField(expectedUserName);
+    public static void searchForPlayer(PlayersListPage playersListPage, Player expectedPlayer){
+        playersListPage.setUserNameField(expectedPlayer.userName);
         playersListPage.clickSearchButton();
     }
 }
