@@ -8,12 +8,13 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 import org.testng.annotations.Test;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
+
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,11 +43,20 @@ public class CreatePlayerTest {
         HttpResponse response = httpclient.execute(httppost);
         HttpEntity entity = response.getEntity();
 
-        InputStream ent = entity.getContent();
+        BufferedReader rd = new BufferedReader(
+                new InputStreamReader(entity.getContent()));
 
-        System.out.println(ent);
 
-        Thread.sleep(10000);
+        StringBuffer result = new StringBuffer();
+        String line = "";
+        while ((line = rd.readLine()) != null) {
+            result.append(line);
+        }
+
+        System.out.println(result.toString());
+
+
+
 
 
     }
