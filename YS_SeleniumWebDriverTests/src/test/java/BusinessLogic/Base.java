@@ -22,12 +22,11 @@ public class Base {
     public WebDriver driver;
     public LoginPage loginPage;
     public PlayersListPage playersListPage;
-    public AssertCheck assertCheck;
+    public AssertCheck assertCheck = new AssertCheck();
     public static String mainWindow;
 
     @BeforeMethod
     public void openSiteAndLogin() {
-        assertCheck = new AssertCheck();
         assertCheck.clearListOfAsserts();
         driver = new FirefoxDriver();
         driver.get("http://193.138.245.222:81/auth/login");
