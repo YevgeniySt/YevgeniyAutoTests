@@ -1,5 +1,6 @@
 package Utils;
 
+import Objects.PlayerFull;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -8,12 +9,12 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,8 +25,10 @@ import java.util.List;
  */
 public class HttpUtils {
 
+    static CloseableHttpClient httpclient = HttpClients.createDefault();
 
-    public static CloseableHttpResponse httpPostLogin(CloseableHttpClient httpClient,String url) throws IOException {
+
+    public static CloseableHttpResponse httpPostLogin(String url) throws IOException {
         HttpPost post = new HttpPost(url);
         List<NameValuePair> params = new ArrayList<NameValuePair>(2);
         params.add(new BasicNameValuePair("username", "admin"));
@@ -34,10 +37,10 @@ public class HttpUtils {
         post.setEntity(new UrlEncodedFormEntity(params));
 
         //execute post
-        return httpClient.execute(post);
+        return httpclient.execute(post);
     }
 
-    public static StringBuffer httpGetUrl(CloseableHttpClient httpclient, String url) throws IOException {
+    public static StringBuffer httpGetUrl(String url) throws IOException {
         HttpGet get = new HttpGet(url);
 
         //execute get
@@ -58,47 +61,42 @@ public class HttpUtils {
         return result1;
     }
 
-    public static CloseableHttpResponse httpPostCreatePlayer(CloseableHttpClient httpclient, String url) throws IOException {
+    public static CloseableHttpResponse httpPostCreatePlayer(String url, PlayerFull playerFull) throws IOException {
 
-        String name = "UN" + String.valueOf(new SimpleDateFormat("MMddHHmmss").format(new Date()));
-        String email = "UN" + String.valueOf(new SimpleDateFormat("MMddHHmmss").format(new Date()))+"@mail.ru";
+
         HttpPost post2 = new HttpPost(url);
-        System.out.println(name);
-        System.out.println(email);
+
         HttpEntity multipart = MultipartEntityBuilder.create()
-                .addTextBody("#requestSender", "ff14642ac1c")
+                .addTextBody("#requestSender", playerFull.requestSender)
                 .addTextBody("submitMode", "save")
-                .addTextBody("ff14642ac1c__us_login", name)
-                .addTextBody("ff14642ac1c__us_email", email)
-                .addTextBody("ff14642ac1c__us_password", "Password1")
-                .addTextBody("ff14642ac1c__confirm_password", "Password1")
-                .addTextBody("ff14642ac1c__us_reg_status", "1")
+                .addTextBody("ff14642ac1c__us_login", playerFull.login)
+                .addTextBody("ff14642ac1c__us_email", playerFull.email)
+                .addTextBody("ff14642ac1c__us_password", playerFull.password)
+                .addTextBody("ff14642ac1c__confirm_password", playerFull.password)
+                .addTextBody("ff14642ac1c__us_reg_status", playerFull.regStatus)
                 .addTextBody("ff14642ac1c__us_chat_enabled", "0")
-                .addTextBody("ff14642ac1c__us_chat_enabled", "1")
-                .addTextBody("ff14642ac1c__is_community", "0")
-                .addTextBody("ff14642ac1c__is_community", "1")
-                .addTextBody("ff14642ac1c__us_owner_id", "1")
-                .addTextBody("ff14642ac1c__us_fname", "")
-                .addTextBody("ff14642ac1c__us_lname", "")
-                .addTextBody("ff14642ac1c__us_city", "")
-                .addTextBody("ff14642ac1c__us_country", "_unset_")
-                .addTextBody("ff14642ac1c__us_address", "")
-                .addTextBody("ff14642ac1c__us_phone", "123456")
-                .addTextBody("ff14642ac1c__us_gender", "1")
-                .addTextBody("ff14642ac1c__us_birthday", "10-07-1997")
-                .addTextBody("ff14642ac1c__disable_lp", "0")
-                .addTextBody("ff14642ac1c__payment_chat_enabled", "0")
-                .addTextBody("ff14642ac1c__payment_chat_enabled", "1")
-                .addTextBody("ff14642ac1c__pit_boss_alert_enabled", "0")
-                .addTextBody("ff14642ac1c__pit_boss_alert_enabled", "1")
-                .addTextBody("ff14642ac1c__credit_type", "Periodic Credit")
-                .addTextBody("ff14642ac1c__credit_amount", "")
-                .addTextBody("ff14642ac1c__credit_frequency", "Weekly")
-                .addTextBody("ff14642ac1c__credit_next_reset", "10-12-2015 00:00:00")
-                .addTextBody("ff14642ac1c__credit_temp", "")
-                .addTextBody("ff14642ac1c__credit_expiration", "")
-                .addTextBody("ff14642ac1c__credit_comment", "")
-                .addTextBody("ff14642ac1c__stop_weekly_reset", "0").build();
+                .addTextBody("ff14642ac1c__us_chat_enabled", playerFull.chatEnabled)
+                .addTextBody("ff14642ac1c__is_community", playerFull.isCommunity)
+                .addTextBody("ff14642ac1c__us_owner_id", playerFull.ownerID)
+                .addTextBody("ff14642ac1c__us_fname", playerFull.fName)
+                .addTextBody("ff14642ac1c__us_lname", playerFull.lName)
+                .addTextBody("ff14642ac1c__us_city", playerFull.city)
+                .addTextBody("ff14642ac1c__us_country", playerFull.country)
+                .addTextBody("ff14642ac1c__us_address", playerFull.address)
+                .addTextBody("ff14642ac1c__us_phone", playerFull.phone)
+                .addTextBody("ff14642ac1c__us_gender", playerFull.gender)
+                .addTextBody("ff14642ac1c__us_birthday", playerFull.birthday)
+                .addTextBody("ff14642ac1c__disable_lp", playerFull.disableLp)
+                .addTextBody("ff14642ac1c__payment_chat_enabled", playerFull.chatEnabled)
+                .addTextBody("ff14642ac1c__pit_boss_alert_enabled", playerFull.pittBossAlertEnabled)
+                .addTextBody("ff14642ac1c__credit_type", playerFull.creditType)
+                .addTextBody("ff14642ac1c__credit_amount", playerFull.creditAmount)
+                .addTextBody("ff14642ac1c__credit_frequency", playerFull.creditFrequency)
+                .addTextBody("ff14642ac1c__credit_next_reset", playerFull.creditNextReset)
+                .addTextBody("ff14642ac1c__credit_temp", playerFull.creditTemp)
+                .addTextBody("ff14642ac1c__credit_expiration", playerFull.creditExpiration)
+                .addTextBody("ff14642ac1c__credit_comment", playerFull.creditComment)
+                .addTextBody("ff14642ac1c__stop_weekly_reset", playerFull.stopWeeklyReset).build();
 
         post2.setEntity(multipart);
 

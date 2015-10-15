@@ -29,4 +29,6 @@ public class Player {
         this.bonusDollars=bonusDollars;
         this.loyaltyPoints=loyaltyPoints;
     }
+
+
 }
