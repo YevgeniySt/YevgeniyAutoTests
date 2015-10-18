@@ -57,11 +57,11 @@ public class HttpUtils {
         while ((line1 = rd1.readLine()) != null) {
             result1.append(line1);
         }
-        response1.close();
+       response1.close();
         return result1;
     }
 
-    public static CloseableHttpResponse httpPostCreatePlayer(String url, PlayerFull playerFull) throws IOException {
+    public static void httpPostCreatePlayer(String url, PlayerFull playerFull) throws IOException {
 
 
         HttpPost post2 = new HttpPost(url);
@@ -100,6 +100,40 @@ public class HttpUtils {
 
         post2.setEntity(multipart);
 
-        return  httpclient.execute(post2);
+        CloseableHttpResponse r = httpclient.execute(post2);
+        r.close();
+
+    }
+
+    public static void httpPostSearchPlayer(String url, PlayerFull playerFull) throws IOException {
+
+
+        HttpPost post2 = new HttpPost(url);
+
+        HttpEntity multipart = MultipartEntityBuilder.create()
+                .addTextBody("723a925886__agent", "_unset_")
+                .addTextBody("723a925886__city", "")
+                .addTextBody("723a925886__email", "")
+                .addTextBody("723a925886__external_ip_address", "")
+                .addTextBody("723a925886__firstname", "")
+                .addTextBody("723a925886__last_login", "")
+                .addTextBody("723a925886__lastname", "")
+                .addTextBody("723a925886__mac_address", "")
+                .addTextBody("723a925886__null1", "")
+                .addTextBody("723a925886__reg_date_from", "")
+                .addTextBody("723a925886__reg_date_to", "")
+                .addTextBody("723a925886__country", "_unset_")
+                .addTextBody("723a925886__deleted", "0")
+                .addTextBody("723a925886__is_community", "_unset_")
+                .addTextBody("723a925886__login", playerFull.login)
+                .addTextBody("723a925886__real_amount", "_unset_")
+                .addTextBody("723a925886__state_type", "_unset_")
+                .addTextBody("723a925886__vip_level", "_unset_")
+                .addTextBody("filterpanel_submited_723a925886", "submited").build();
+
+        post2.setEntity(multipart);
+
+        CloseableHttpResponse r =  httpclient.execute(post2);
+        r.close();
     }
 }

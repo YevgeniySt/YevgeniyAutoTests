@@ -1,9 +1,10 @@
 package HttpTests;
 
+import BusinessLogic.BaseHttp;
 import Objects.PlayerFull;
 import Objects.PlayerFullBuilder;
 import Utils.HttpUtils;
-import org.apache.http.client.methods.CloseableHttpResponse;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -13,13 +14,13 @@ import java.util.Date;
 /**
  * Created by Евгений on 29.09.2015.
  */
-public class CreatePlayerTest {
-    public String baseUrl = "http://193.138.245.222:81";
+public class CreatePlayerTest extends BaseHttp{
+
 
     @Test
     public void createPlayerTest() throws IOException, InterruptedException {
 
-        //create player
+        //arrange
         String login = "UN" + String.valueOf(new SimpleDateFormat("MMddHHmmss").format(new Date()));
         String email = "UN" + String.valueOf(new SimpleDateFormat("MMddHHmmss").format(new Date()))+"@mail.ru";
         System.out.println(login);
@@ -56,34 +57,15 @@ public class CreatePlayerTest {
                 .withStopWeeklyReset("0")
                 .build();
 
-
-        //login
-
-        CloseableHttpResponse response =HttpUtils.httpPostLogin(baseUrl + "/auth/login");
-
-        //get status
-        System.out.println(response.getStatusLine().getStatusCode());
-
-        //get result of get
-
-        StringBuffer result1 = HttpUtils.httpGetUrl(baseUrl + "/players");
-
-        //check title
-
-        boolean b =result1.toString().contains("<title>Players</title>");
-        System.out.println(b);
+        //act
+        HttpUtils.httpPostCreatePlayer(baseUrl + "/players/insert", expectedPlayer);
 
 
-        //get post response
+        HttpUtils.httpPostSearchPlayer(baseUrl + "/players", expectedPlayer);
+        //assert
+        StringBuffer result6 = HttpUtils.httpGetUrl(baseUrl + "/players");
 
-
-        CloseableHttpResponse response5 = HttpUtils.httpPostCreatePlayer(baseUrl+"/players/insert",expectedPlayer);
-
-
-        //check status
-        System.out.println(response5.getStatusLine().getStatusCode());
-
-
+        Assert.assertTrue(result6.toString().contains(">" + expectedPlayer.login + "</a>k"));
     }
 
 }
