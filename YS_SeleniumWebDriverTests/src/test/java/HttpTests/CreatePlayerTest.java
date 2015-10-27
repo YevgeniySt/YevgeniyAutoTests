@@ -3,23 +3,14 @@ package HttpTests;
 import BusinessLogic.BaseHttp;
 import Objects.PlayerFull;
 import Objects.PlayerFullBuilder;
+import Utils.DataBaseUtils;
 import Utils.HttpUtils;
-import com.jcraft.jsch.JSch;
-import com.jcraft.jsch.JSchException;
-import com.jcraft.jsch.Session;
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.sql.DriverManager;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Properties;
 
 /**
  * Created by Евгений on 29.09.2015.
@@ -71,11 +62,9 @@ public class CreatePlayerTest extends BaseHttp{
 
         //act
         HttpUtils.httpPostCreatePlayer(baseUrl + "/players/insert", expectedPlayer);
-
-
         HttpUtils.httpPostSearchPlayer(baseUrl + "/players", expectedPlayer);
         //assert
-        String us_loginActual = HttpUtils.queryResult("SELECT us_login FROM players where us_login="+"\""+expectedPlayer.login+"\"");
+        String us_loginActual = DataBaseUtils.queryResult("SELECT us_login FROM players where us_login=" + "\"" + expectedPlayer.login + "\"");
 
       //  StringBuffer result6 = HttpUtils.httpGetUrl(baseUrl + "/players");
 
