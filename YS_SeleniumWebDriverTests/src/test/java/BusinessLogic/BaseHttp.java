@@ -10,7 +10,7 @@ import java.io.IOException;
  * Created by Евгений on 18.10.2015.
  */
 public class BaseHttp {
-    public String baseUrl = "http://193.138.245.222:81";
+    public String baseUrl = "http://192.168.0.103";
 
     @BeforeMethod
     public void login() throws IOException {
@@ -19,4 +19,6 @@ public class BaseHttp {
         boolean b =result1.toString().contains("<title>Players</title>");
         System.out.println(b);
     }
+
+
 }

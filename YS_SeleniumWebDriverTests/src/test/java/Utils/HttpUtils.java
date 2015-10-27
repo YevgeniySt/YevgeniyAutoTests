@@ -1,6 +1,9 @@
 package Utils;
 
 import Objects.PlayerFull;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -15,10 +18,13 @@ import org.apache.http.message.BasicNameValuePair;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * Created by Евгений on 09.10.2015.
@@ -136,4 +142,6 @@ public class HttpUtils {
         CloseableHttpResponse r =  httpclient.execute(post2);
         r.close();
     }
+
+
 }
