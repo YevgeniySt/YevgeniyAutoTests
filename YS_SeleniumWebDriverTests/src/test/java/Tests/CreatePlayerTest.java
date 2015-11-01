@@ -1,13 +1,13 @@
-package Tests;
+package tests;
 
 
-import BusinessLogic.InsertPageActions;
-import BusinessLogic.PlayersListPageActions;
-import Objects.Player;
-import Objects.PlayerBuilder;
-import Pages.PlayersEditPage;
-import BusinessLogic.Base;
-import Pages.InsertPage;
+import businesslogic.InsertPageActions;
+import businesslogic.PlayersListPageActions;
+import test_models.Player;
+import test_models.PlayerBuilder;
+import pages.PlayersEditPage;
+import businesslogic.Base;
+import pages.InsertPage;
 import org.testng.annotations.Test;
 
 import java.text.SimpleDateFormat;

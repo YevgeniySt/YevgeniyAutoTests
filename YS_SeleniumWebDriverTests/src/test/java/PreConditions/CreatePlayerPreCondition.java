@@ -1,7 +1,7 @@
-package PreConditions;
+package preconditions;
 
 
-import Tests.CreatePlayerTest;
+import tests.CreatePlayerTest;
 
 
 

@@ -1,7 +1,7 @@
-package BusinessLogic;
+package businesslogic;
 
-import Objects.Transaction;
-import Pages.TransactionsInsertPage;
+import test_models.Transaction;
+import pages.TransactionsInsertPage;
 
 /**
  * Created by Евгений on 27.09.2015.

@@ -1,15 +1,15 @@
-package Tests;
+package tests;
 
-import BusinessLogic.Base;
-import BusinessLogic.PlayersListPageActions;
-import BusinessLogic.TransactionsInsertPageActions;
-import Objects.Player;
-import Objects.PlayerBuilder;
-import Objects.Transaction;
-import Objects.TransactionBuilder;
-import Pages.PlayersEditPage;
-import Pages.TransactionsInsertPage;
-import Utils.Converter;
+import businesslogic.Base;
+import businesslogic.PlayersListPageActions;
+import businesslogic.TransactionsInsertPageActions;
+import test_models.Player;
+import test_models.PlayerBuilder;
+import test_models.Transaction;
+import test_models.TransactionBuilder;
+import pages.PlayersEditPage;
+import pages.TransactionsInsertPage;
+import utils.Converter;
 
 import org.testng.annotations.Test;
 import java.text.ParseException;

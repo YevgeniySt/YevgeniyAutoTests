@@ -1,4 +1,4 @@
-package Objects;
+package test_models;
 
 /**
  * Created by YevgeniyS on 15/10/2015.

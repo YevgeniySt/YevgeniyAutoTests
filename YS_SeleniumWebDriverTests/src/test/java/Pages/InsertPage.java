@@ -1,7 +1,6 @@
-package Pages;
+package pages;
 
-import Utils.WindowsHandler;
-import org.openqa.selenium.By;
+import utils.WindowsHandler;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

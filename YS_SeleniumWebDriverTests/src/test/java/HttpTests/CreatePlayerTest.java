@@ -1,10 +1,10 @@
-package HttpTests;
+package httptests;
 
-import BusinessLogic.BaseHttp;
-import Objects.PlayerFull;
-import Objects.PlayerFullBuilder;
-import Utils.DataBaseUtils;
-import Utils.HttpUtils;
+import businesslogic.BaseHttp;
+import test_models.PlayerFull;
+import test_models.PlayerFullBuilder;
+import utils.DataBaseHelper;
+import utils.HttpHelper;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -16,9 +16,6 @@ import java.util.Date;
  * Created by Евгений on 29.09.2015.
  */
 public class CreatePlayerTest extends BaseHttp{
-
-
-
 
     @Test
     public void createPlayerTest() throws IOException, InterruptedException {
@@ -61,20 +58,16 @@ public class CreatePlayerTest extends BaseHttp{
                 .build();
 
         //act
-        HttpUtils.httpPostCreatePlayer(baseUrl + "/players/insert", expectedPlayer);
-        HttpUtils.httpPostSearchPlayer(baseUrl + "/players", expectedPlayer);
+        HttpHelper.httpPostCreatePlayer(baseUrl + "/players/insert", expectedPlayer);
+        HttpHelper.httpPostSearchPlayer(baseUrl + "/players", expectedPlayer);
         //assert
-        String us_loginActual = DataBaseUtils.queryResult("SELECT us_login FROM players where us_login=" + "\"" + expectedPlayer.login + "\"");
+        String us_loginActual = DataBaseHelper.loginByLogin(expectedPlayer.login);
 
-      //  StringBuffer result6 = HttpUtils.httpGetUrl(baseUrl + "/players");
+      //  StringBuffer result6 = HttpHelper.httpGetUrl(baseUrl + "/players");
 
        // Assert.assertTrue(result6.toString().contains(">" + expectedPlayer.login + "</a>k"));
 
         Assert.assertEquals(expectedPlayer.login+"f",us_loginActual);
-
-
-
-
 
     }
 

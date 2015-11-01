@@ -1,7 +1,7 @@
-package Pages;
+package pages;
 
-import BusinessLogic.Base;
-import Utils.WindowsHandler;
+import businesslogic.Base;
+import utils.WindowsHandler;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

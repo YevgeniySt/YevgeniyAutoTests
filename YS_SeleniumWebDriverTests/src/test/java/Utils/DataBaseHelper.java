@@ -1,4 +1,4 @@
-package Utils;
+package utils;
 
 import com.mysql.jdbc.Statement;
 
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 /**
  * Created by Евгений on 27.10.2015.
  */
-public class DataBaseUtils {
+public class DataBaseHelper {
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/test";
@@ -17,7 +17,9 @@ public class DataBaseUtils {
     //  Database credentials
     static final String USER = "root";
     static final String PASS = "";
-    public static String queryResult(String query){
+    public static String loginByLogin(String login){
+
+        String query = String.format("SELECT us_login FROM players where us_login='%s'", login);
         String us_login = null;
         com.mysql.jdbc.Connection conn = null;
         Statement stmt = null;

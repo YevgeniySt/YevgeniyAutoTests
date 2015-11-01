@@ -1,9 +1,6 @@
-package Utils;
+package utils;
 
 import org.openqa.selenium.WebDriver;
-
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by Евгений on 27.09.2015.

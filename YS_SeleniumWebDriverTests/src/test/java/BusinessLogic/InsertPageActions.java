@@ -1,8 +1,7 @@
-package BusinessLogic;
+package businesslogic;
 
-import Objects.Player;
-import Pages.InsertPage;
-import Pages.PlayersListPage;
+import test_models.Player;
+import pages.InsertPage;
 
 /**
  * Created by Евгений on 27.09.2015.

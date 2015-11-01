@@ -1,17 +1,12 @@
-package BusinessLogic;
+package businesslogic;
 
-import Objects.Player;
-import Objects.PlayerBuilder;
-import Pages.LoginPage;
-import Pages.PlayersListPage;
-import Utils.AssertCheck;
-import Utils.WindowsHandler;
+import pages.LoginPage;
+import pages.PlayersListPage;
+import utils.AssertCheck;
+import utils.WindowsHandler;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 
 /**

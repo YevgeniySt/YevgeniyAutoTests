@@ -1,10 +1,5 @@
-package BusinessLogic;
+package businesslogic;
 
-
-
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.io.Serializable;
 
 /**
  * Created by Евгений on 18.10.2015.

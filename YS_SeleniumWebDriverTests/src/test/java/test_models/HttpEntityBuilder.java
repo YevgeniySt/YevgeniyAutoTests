@@ -1,80 +1,16 @@
-package Utils;
+package test_models;
 
-import Objects.PlayerFull;
-import com.jcraft.jsch.JSch;
-import com.jcraft.jsch.JSchException;
-import com.jcraft.jsch.Session;
-import com.mysql.jdbc.Statement;
 import org.apache.http.HttpEntity;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.message.BasicNameValuePair;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Properties;
 
 /**
- * Created by Евгений on 09.10.2015.
+ * Created by Евгений on 01.11.2015.
  */
-public class HttpUtils {
+public class HttpEntityBuilder {
 
-    static CloseableHttpClient httpclient = HttpClients.createDefault();
+    public static HttpEntity createHttpEntityForPostCreatePlayer(PlayerFull playerFull){
 
-    public static CloseableHttpResponse httpPostLogin(String url) throws IOException {
-        HttpPost post = new HttpPost(url);
-        List<NameValuePair> params = new ArrayList<NameValuePair>(2);
-        params.add(new BasicNameValuePair("username", "admin"));
-        params.add(new BasicNameValuePair("password", "123"));
-        params.add(new BasicNameValuePair("logIn", "Log+In"));
-        post.setEntity(new UrlEncodedFormEntity(params));
-
-        //execute post
-        return httpclient.execute(post);
-    }
-
-    public static StringBuffer httpGetUrl(String url) throws IOException {
-        HttpGet get = new HttpGet(url);
-
-        //execute get
-
-        CloseableHttpResponse response1= httpclient.execute(get);
-
-        //get response
-
-        BufferedReader rd1 = new BufferedReader(
-                new InputStreamReader(response1.getEntity().getContent()));
-
-        StringBuffer result1 = new StringBuffer();
-        String line1 = "";
-        while ((line1 = rd1.readLine()) != null) {
-            result1.append(line1);
-        }
-       response1.close();
-        return result1;
-    }
-
-    public static void httpPostCreatePlayer(String url, PlayerFull playerFull) throws IOException {
-
-
-        HttpPost post2 = new HttpPost(url);
-
-        HttpEntity multipart = MultipartEntityBuilder.create()
+        HttpEntity httpEntity = MultipartEntityBuilder.create()
                 .addTextBody("#requestSender", playerFull.requestSender)
                 .addTextBody("submitMode", "save")
                 .addTextBody("ff14642ac1c__us_login", playerFull.login)
@@ -105,20 +41,10 @@ public class HttpUtils {
                 .addTextBody("ff14642ac1c__credit_expiration", playerFull.creditExpiration)
                 .addTextBody("ff14642ac1c__credit_comment", playerFull.creditComment)
                 .addTextBody("ff14642ac1c__stop_weekly_reset", playerFull.stopWeeklyReset).build();
-
-        post2.setEntity(multipart);
-
-        CloseableHttpResponse r = httpclient.execute(post2);
-        r.close();
-
+        return httpEntity;
     }
-
-    public static void httpPostSearchPlayer(String url, PlayerFull playerFull) throws IOException {
-
-
-        HttpPost post2 = new HttpPost(url);
-
-        HttpEntity multipart = MultipartEntityBuilder.create()
+    public static HttpEntity createHttpEntityForPostSearchPlayer(PlayerFull playerFull){
+        HttpEntity httpEntity = MultipartEntityBuilder.create()
                 .addTextBody("723a925886__agent", "_unset_")
                 .addTextBody("723a925886__city", "")
                 .addTextBody("723a925886__email", "")
@@ -138,10 +64,7 @@ public class HttpUtils {
                 .addTextBody("723a925886__state_type", "_unset_")
                 .addTextBody("723a925886__vip_level", "_unset_")
                 .addTextBody("filterpanel_submited_723a925886", "submited").build();
+        return httpEntity;
 
-        post2.setEntity(multipart);
-
-        CloseableHttpResponse r =  httpclient.execute(post2);
-        r.close();
     }
 }

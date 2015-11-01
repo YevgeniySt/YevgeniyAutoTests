@@ -1,9 +1,9 @@
-package Tests;
+package tests;
 
 
-import Pages.LoginPage;
-import Utils.AssertCheck;
-import BusinessLogic.Base;
+import pages.LoginPage;
+import utils.AssertCheck;
+import businesslogic.Base;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.*;
 
