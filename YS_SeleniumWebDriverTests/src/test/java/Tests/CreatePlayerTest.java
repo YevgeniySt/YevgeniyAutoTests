@@ -19,7 +19,7 @@ import java.util.Date;
 public class CreatePlayerTest extends Base{
 
 
-    @Test
+    @Test(groups = { "g1" })
     public void createPlayerTest() throws InterruptedException {
 
 

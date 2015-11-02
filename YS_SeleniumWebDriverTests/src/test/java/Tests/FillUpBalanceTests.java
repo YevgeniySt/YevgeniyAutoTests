@@ -20,7 +20,7 @@ import java.text.ParseException;
  */
 public class FillUpBalanceTests extends Base{
 
-    @Test
+    @Test(groups = { "g1" })
     public void fillUpRealMoneyTest() throws ParseException, InterruptedException {
 
         //create values
@@ -60,7 +60,7 @@ public class FillUpBalanceTests extends Base{
 
     }
 
-    @Test
+    @Test(groups = { "g2" })
     public void fillUpFunMoneyTest() throws ParseException, InterruptedException {
 
         //create values
@@ -103,7 +103,7 @@ public class FillUpBalanceTests extends Base{
 
     }
 
-    @Test
+    @Test(groups = { "g1" })
     public void fillUpBonusDollarsTest() throws ParseException, InterruptedException {
 
         //create values

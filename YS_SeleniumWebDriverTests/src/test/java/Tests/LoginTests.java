@@ -12,7 +12,7 @@ import org.testng.annotations.*;
  */
 public class LoginTests extends Base{
 
-    @Test
+    @Test(groups = { "g1" })
     public void LoginPositiveTest() throws InterruptedException {
 
         playersListPage.isUserNameDisplayed();
@@ -29,7 +29,7 @@ public class LoginTests extends Base{
         loginPage.setPasswordField("124");
         playersListPage = loginPage.clickOnLogin();
     }
-    @Test
+    @Test(groups = { "g2" })
     public void LoginNegativeTest() throws InterruptedException {
 
         String expectedErrorLabel = loginPage.getErrorLoginText();

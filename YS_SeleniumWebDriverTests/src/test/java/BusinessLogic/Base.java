@@ -20,7 +20,7 @@ public class Base {
     public AssertCheck assertCheck = new AssertCheck();
     public static String mainWindow;
 
-    @BeforeMethod
+    @BeforeMethod (groups = { "g1" })
     public void openSiteAndLogin() {
         assertCheck.clearListOfAsserts();
         driver = new FirefoxDriver();
@@ -38,7 +38,7 @@ public class Base {
         mainWindow = WindowsHandler.getCurrentWindow(driver);
     }
 
-    @AfterMethod
+    @AfterMethod (groups = { "g1" })
     public void closeSite() {
         driver.close();
     }
